@@ -1,12 +1,32 @@
 require "reals/version"
 require "reals/array"
+require "reals/routing"
 
 module Reals
+
   class Application
     def call(env)
-      `echo debug > debug.txt`
+      #暫時擋一下
+      if env['PATH_INFO'] == '/favicon.ico'
+        return [404, {'Content-Type' => 'text/html'}, []]
+      end
+
+      klass, act = get_controller_and_action(env)
+      controller = klass.new(env)
+      text = controller.send(act)
       [200, {'Content-Type' => 'text/html'},
-        ["Hello from Ruby on Reals!"]]
+        [text]]
     end
   end
+
+  class Controller
+    def initialize(env)
+      @env = env
+    end
+
+    def env
+      @env
+    end
+  end
+
 end
