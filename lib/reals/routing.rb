@@ -5,7 +5,7 @@ module Reals
       cont = cont.capitalize
       cont += "Controller"
 
-      [Object.const_get(cont), action]
+      [Object.const_get(cont), "index"]
     end
   end
 end

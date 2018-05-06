@@ -1,6 +1,7 @@
 require "reals/version"
-require "reals/array"
 require "reals/routing"
+require "reals/util"
+require "reals/dependencies"
 
 module Reals
 
